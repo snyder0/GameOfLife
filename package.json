@@ -1,0 +1,26 @@
+{
+  "name": "gameoflife",
+  "version": "1.0.0",
+  "description": "cellular automaton",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon starter.js"
+  },
+  "author": "Luke Snyder",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
+    "@sweetalert/with-react": "^0.1.1",
+    "express": "^4.16.4",
+    "http": "0.0.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0"
+  }
+}
