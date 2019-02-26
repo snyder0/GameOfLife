@@ -1,78 +1,27 @@
 let Vivarium = {}
-let totalRows = null
-let totalColumns = null
-let orgRow = 0
-let orgColumn = 0
+let vivarium = []
 
 // Creates vivarium of requested size
 Vivarium.create = (columns, rows) => {
-    totalRows = rows
-    totalColumns = columns
-
-    // Fills 2D array with organisms
-    let vivarium = Array(columns).fill().map(() => 
-        Array(rows).fill().map(() => Vivarium.getOrganism())
+    // Fill 2D array with organisms
+    vivarium = Array(columns).fill().map(() => 
+        Array(rows).fill().map(() => Array(columns).fill(0))
     )
+}
 
-    // Place organisms in vivarium
-    for (let row of vivarium) {
-        row.map((organism) => {
-                if (organism.status === 0) {
-                Vivarium.setCell(false, organism)
-            } else {
-                Vivarium.setCell(true, organism)
+Vivarium.initiate = () => {
+    // Initiate matrix of vivarium
+    for (let row in vivarium) {
+        vivarium[row].map((organism, column) => {
+            organism = Organsim.create(parseInt(row), column)
+            if (organism.isAlive) {
+                Vivarium.renderOrganism(true, organism)
             }
         })
     }
-
-    orgRow = 0
-    orgColumn = 0
-
-    return vivarium
 }
 
-Vivarium.getOrganism = () => {
-    let organism = {}
-    let organismType = Math.round(Math.random())
-
-    if (organismType == 1) {
-        organism = {
-            type: 'type1',
-            color: '#e242f4',
-            size: 10,
-            energy: 50,
-            status: Math.round(Math.random()),
-            lifeSpan: 1000,
-            age: 0,
-            x: orgRow,
-            y: orgColumn
-        }
-    } else {
-        organism = {
-            type: 'type1',
-            color: '#6bef37',
-            size: 20,
-            energy: 50,
-            status: Math.round(Math.random()),
-            lifeSpan: 1000,
-            age: 0,
-            x: orgRow,
-            y: orgColumn
-        }
-    }
-    
-
-    if (orgColumn < (totalColumns * 10) - 10) {
-        orgColumn += 10
-    } else {
-        orgRow += 10
-        orgColumn = 0
-    }
-
-    return organism
-}
-
-Vivarium.setCell = (isAlive, organism) => {
+Vivarium.renderOrganism = (isAlive, organism) => {
     let canvas = document.getElementById('vivarium')
     let cell = canvas.getContext('2d')
     

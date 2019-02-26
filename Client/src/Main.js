@@ -1,7 +1,8 @@
-let vivarium = Vivarium.create(100, 100)
-
 let canvas = document.getElementById('vivarium')
 canvas.addEventListener('click', getClickPosition, false)
+
+Vivarium.create(10, 10)
+Vivarium.initiate()
 
 function getClickPosition(e) {
     
